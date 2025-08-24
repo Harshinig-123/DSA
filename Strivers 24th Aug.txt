@@ -1,0 +1,41 @@
+// Striverz
+7/24-8-25
+class Solution {
+    public void printNumber(Scanner sc) {
+        int num = sc.nextInt();
+        System.out.println(num);
+    }
+}
+
+class Solution {
+    public void studentGrade(int marks) {
+        if (marks>= 90)
+        {   System.out.println("Grade A");}
+        else if (marks< 90 && marks >= 70)
+        {   System.out.println("Grade B");}
+        else if (marks>= 50 && marks <70)
+        {   System.out.println("Grade C");}
+        else if (marks>= 35 && marks < 50)
+        {   System.out.println("Grade D");}
+        else
+            System.out.println("Fail");
+    }
+}
+
+class Solution {
+    public void whichWeekDay(int day) {
+        if (day>7 || day <1)
+        {   System.out.println("Invalid");}
+        else{
+            switch(day){
+                case 1: {System.out.println("Monday"); break;}
+                case 2: {System.out.println("Tuesday"); break;}
+                case 3: {System.out.println("Wednesday");break;}
+                case 4: {System.out.println("Thursday"); break;}
+                case 5: {System.out.println("Friday"); break;}
+                case 6: {System.out.println("Saturday"); break;}
+                case 7: {System.out.println("Sunday"); break; }
+            }
+        }
+    }
+}

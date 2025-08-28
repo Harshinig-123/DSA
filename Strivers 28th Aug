@@ -1,0 +1,83 @@
+28 - 8 - 2025
+//https://takeuforward.org/plus/dsa/problems/palindrome-number
+class Solution {
+    public boolean isPalindrome(int n) {
+        String str = String.valueOf(n);  //  number to string
+        int len = str.length();
+
+        for (int i = 0; i < len / 2; i++) {
+            if (str.charAt(i) != str.charAt(len - i - 1)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+// https://takeuforward.org/plus/dsa/problems/print-1-to-n-using-recursion
+class Solution {
+    public void printNumbers(int n) {
+        for (int i = 1; i<=n; i++)
+        {
+            System.out.println(i);
+        }
+    }
+}
+
+// https://takeuforward.org/plus/dsa/problems/print-n-to-1-using-recursion
+class Solution {
+    public void printNumbers(int n) {
+        for (int i = n; i>=1; i--)
+        {
+            System.out.println(i);
+        }
+    }
+}
+
+// https://takeuforward.org/plus/dsa/problems/sum-of-first-n-numbers
+class Solution {
+    public int NnumbersSum(int N) {
+        int sum = 0;
+       for (int i = 1; i<=N; i++)
+        {
+           sum = sum+i;
+        }
+        return sum;
+    }
+}
+
+// https://takeuforward.org/plus/dsa/problems/reverse-an-arrayclass Solution {
+    public void reverse(int[] arr, int n) {
+        for (int i = 0; i<n/2; i++)
+        {
+            int temp = arr[i];
+            arr[i] = arr[n-i-1];
+            arr[n-i-1] = temp;
+        }
+    }
+}
+
+// https://takeuforward.org/plus/dsa/problems/fibonacci-number
+class Solution {
+    public int fib(int n) {
+        if(n==0)
+            return 0;
+        if(n==1)
+
+            return 1;
+        else
+            return (fib(n-1)+fib(n-2));
+    }
+}
+
+//https://takeuforward.org/plus/dsa/problems/check-if-string-is-palindrome-or-not-
+class Solution {
+    public boolean palindromeCheck(String s) {
+        int n = s.length();
+        for(int i=0;i<n;i++)
+        {
+            if(s.charAt(i)!= s.charAt(n-i-1))
+                return false;
+        }
+        return true;
+    }
+}

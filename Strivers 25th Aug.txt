@@ -1,0 +1,24 @@
+// Strivers 25th Aug
+
+class Solution {
+    public int countDigit(int n) {
+        int count = 0;
+        while(n!=0){
+            n=n/10;
+            count++;
+        }
+        return(count);
+    }
+}
+
+class Solution {
+    public int reverseNumber(int n) {
+        int rev = 0;
+        while (n != 0) {
+            int m = n % 10;
+            rev = rev * 10 + m;
+            n = n / 10;
+        }
+        return rev;
+    }
+}

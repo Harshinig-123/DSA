@@ -1,0 +1,50 @@
+https://leetcode.com/problems/remove-duplicates-from-sorted-array/submissions/2001499849/
+Q26
+class Solution {
+    public int removeDuplicates(int[] nums) {
+        int n = nums.length;
+        int x = 0;
+        for(int i = 0; i<n-1;)
+        {
+            if(nums[i] == nums[i+1])
+            {   
+                x++;
+                for(int j = i; j<n-1;j++)
+                {
+                    nums[j] = nums[j+1];
+                }
+                n--;
+            }
+            else
+                i++;
+        }
+        return n;
+    }
+}
+https://leetcode.com/problems/rotate-array/submissions/2001530411/
+Q189
+class Solution {
+    public void rotate(int[] nums, int k) {
+        int n = nums.length;
+        k = k%n;
+        /*for smaller arrays
+        for(int i = 0; i<k; i++)
+        {
+            int temp = nums[n-1];
+            for (int j = n - 1; j > 0; j--) 
+            {
+                nums[j] = nums[j - 1];
+            }
+            nums[0] = temp;
+        }*/
+        int[] num2 = new int[n];
+        for(int i = 0; i<n; i++)
+        {
+            num2[(i+k)%n] = nums[i];
+        }
+        for (int i = 0; i<n; i++)
+        {
+            nums[i] = num2[i];
+        }
+    }
+}

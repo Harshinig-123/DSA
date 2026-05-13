@@ -1,0 +1,41 @@
+https://leetcode.com/problems/non-decreasing-array/
+Q655
+class Solution {
+    public boolean checkPossibility(int[] nums) {
+        int n=nums.length;
+        int x=0;
+       /* //passes 310 cases
+       for(int i =0; i<n-1;i++)
+        {
+            if(nums[i]<nums[i+1])
+            {
+                x++;
+            }
+        }   
+        if(x==(n-1)||x==(n-2)) 
+        {
+            return true;
+        }   
+        else
+            return false;
+        */
+        for(int i = 0; i < n - 1; i++) {
+            if(nums[i] > nums[i + 1]) {
+                x++;
+                if(x > 1) {
+                    return false;
+                }
+                
+                // Decide how to fix the violation
+                if(i > 0 && nums[i - 1] > nums[i + 1]) {
+                    // Fix by raising nums[i+1]
+                    nums[i + 1] = nums[i];
+                } else {
+                    // Fix by lowering nums[i]
+                    nums[i] = nums[i + 1];
+                }
+            }
+        }
+        return true;
+    }
+}

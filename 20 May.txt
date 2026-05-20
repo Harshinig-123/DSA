@@ -1,0 +1,105 @@
+https://leetcode.com/problems/minimum-common-value/submissions/2008376099/?envType=daily-question&envId=2026-05-19
+Q2540
+class Solution {
+    public int getCommon(int[] nums1, int[] nums2) {
+        int i = 0, j = 0;
+        
+        while (i < nums1.length && j < nums2.length) {
+            if (nums1[i] == nums2[j]) {
+                return nums1[i];
+            } else if (nums1[i] < nums2[j]) {
+                i++;
+            } else {
+                j++;
+            }
+        }
+        return -1;
+        /*
+        int v1 = -1;
+        for(int i = 0; i<nums1.length; i++)
+        {
+            for (int j = 0; j<nums2.length; j++)
+            {
+                if(nums1[i] == nums2[j])
+                {
+                    v1 = nums1[i];
+                return v1;
+                }
+            }
+        }
+        return v1;
+        */
+        
+    }
+}
+
+https://leetcode.com/problems/majority-element/submissions/2008385441/
+Q169
+import java.util.Arrays;
+class Solution {
+    public int majorityElement(int[] nums) {
+        Arrays.sort(nums);
+        int n = nums.length; 
+        int lim = (n/2)+1;
+        int c = 1;
+        int x = nums[0];
+        for (int i = 0; i<n-1; i++)
+        {
+            if(nums[i]==nums[i+1])
+            {
+                c++;
+                if(c == lim)
+                {
+                    x = nums[i];
+                    break;
+                }
+            }
+            else
+            {
+                c = 1;
+            }
+        }
+        return x;
+    }
+}
+https://leetcode.com/problems/two-sum/submissions/2008410002/
+Q1
+
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        int m[] = new int[2];
+        for(int i = 0; i<nums.length;i++)
+        {
+            int sum = nums[i];
+            for(int j = i+1; j<nums.length;j++)
+            {
+                if((sum + nums[j]) == target)
+                {
+                    m[0] = i;
+                    m[1] = j;
+                }
+            }   
+        }
+        return m;
+    }
+}
+https://leetcode.com/problems/subarray-sum-equals-k/description/
+Q560
+class Solution {
+    public int subarraySum(int[] nums, int k) {
+        int c = 0;
+        for (int i = 0; i<nums.length;i++)
+        {
+            int sum = 0;
+            for(int j = i; j<nums.length; j++)
+            {
+                sum = sum+nums[j];
+                if(sum == k)
+                {
+                    c++;
+                }
+            }
+        }
+        return c;
+	}
+}

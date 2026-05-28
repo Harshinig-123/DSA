@@ -1,0 +1,149 @@
+https://leetcode.com/problems/binary-tree-inorder-traversal/
+Q94
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public List<Integer> inorderTraversal(TreeNode root) {
+        List l = new ArrayList<>();
+        inorder(root,l);
+        return l;
+    }
+    void inorder(TreeNode node, List<Integer> l)
+    {
+        if(node==null)
+            return;
+        {
+            inorder(node.left,l);
+            l.add(node.val);
+            inorder(node.right,l);
+        }
+    }
+}
+
+https://leetcode.com/problems/binary-tree-postorder-traversal/
+Q145
+class Solution {
+    public List<Integer> postorderTraversal(TreeNode root) {
+        List l = new ArrayList<>();
+        postorder(root,l);
+        return l;
+    }
+    void postorder(TreeNode node, List<Integer> l)
+    {
+        if(node==null)
+            return;
+        postorder(node.left,l);
+        postorder(node.right,l);
+        l.add(node.val);
+    }
+}
+https://leetcode.com/problems/binary-tree-preorder-traversal/description/
+Q144
+class Solution {
+    public List<Integer> preorderTraversal(TreeNode root) {
+        List l = new ArrayList<>();
+        preorder(root,l);
+        return l;
+    }
+    void preorder(TreeNode node, List<Integer> l)
+    {
+        if(node == null)
+            return;
+        l.add(node.val);
+        preorder(node.left,l);
+        preorder(node.right,l);
+    }
+}
+https://leetcode.com/problems/monotonic-array/description/
+Q896
+class Solution {
+    public boolean isMonotonic(int[] nums) {
+        return isIncreasing(nums)||isDecreasing(nums);
+    }
+    boolean isIncreasing(int[] nums)
+    {   
+        for(int i = 0; i<nums.length-1; i++)
+        {
+            if(nums[i]>nums[i+1])
+                return false;
+        }
+        return true;
+    }
+
+    boolean isDecreasing(int[] nums)
+    {
+        for(int i = 0; i<nums.length-1;i++)
+        {
+            if(nums[i]<nums[i+1])
+                return false;
+        }
+        return true;
+    }
+}
+https://leetcode.com/problems/valid-mountain-array/description/
+Q941
+class Solution {
+    public boolean validMountainArray(int[] arr) {
+        if(isIncreasing(arr) ||isDecreasing(arr))
+            return false;
+        if(arr.length<3)
+            return false;
+        if(arr[0]<arr[1])
+        {   int i=0;
+            for(i = 0;i<arr.length-1;i++)
+            {
+                if(arr[i]==arr[i+1])
+                    return false;
+                if(arr[i]>arr[i+1])
+                    break;
+            }
+            if(i==0)    
+                return false;
+            if(arr[i]>arr[i+1])
+            {
+                for(int j = i; j<arr.length-1;j++)
+                {
+                    if(arr[j]==arr[j+1])
+                        return false;
+                    if(arr[j]<arr[j+1])
+                        return false;
+                }
+            }
+            return true;
+        }
+        else
+            return false;
+    }
+        boolean isIncreasing(int[] nums)
+    {   
+        for(int i = 0; i<nums.length-1; i++)
+        {
+            if(nums[i]>nums[i+1])
+                return false;
+        }
+        return true;
+    }
+
+    boolean isDecreasing(int[] nums)
+    {
+        for(int i = 0; i<nums.length-1;i++)
+        {
+            if(nums[i]<nums[i+1])
+                return false;
+        }
+        return true;
+    }
+}

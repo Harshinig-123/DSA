@@ -1,0 +1,618 @@
+https://leetcode.com/problems/pascals-triangle/description/
+Q118
+class Solution {
+    public List<List<Integer>> generate(int numRows) {
+        List<List<Integer>> ans = new ArrayList<>();
+        for (int i = 0; i < numRows; i++) {
+            List<Integer> row = new ArrayList<>();
+            long val = 1;
+            for (int j = 0; j <= i; j++) {
+                row.add((int)val);
+                val = val * (i - j) / (j + 1);  
+            }   
+            ans.add(row);
+        }        
+        return ans;
+    }
+}
+https://leetcode.com/problems/best-time-to-buy-and-sell-stock/
+Q121
+class Solution {
+    public int maxProfit(int[] prices) {
+        int minPrice = Integer.MAX_VALUE;
+        int maxProfit = 0;
+        
+        for (int i = 0; i < prices.length; i++) {
+            if (prices[i] < minPrice) {
+                minPrice = prices[i];
+            }
+            else if (prices[i] - minPrice > maxProfit) {
+                maxProfit = prices[i] - minPrice;
+            }
+        }
+        return maxProfit;
+    }
+}
+https://leetcode.com/problems/search-a-2d-matrix/description/
+Q74
+class Solution {
+    public boolean searchMatrix(int[][] matrix, int target) {
+        int m = matrix.length;
+        int n = matrix[0].length;
+        for(int i = 0; i<m; i++)
+        {
+            if(target>=matrix[i][0] && target<=matrix[i][n-1])
+            {
+                for(int j = 0; j<n;j++)
+                {
+                    if(target == matrix[i][j])
+                        return true;
+                }
+            }
+        } 
+        return false;
+    }
+}
+
+https://leetcode.com/problems/majority-element-ii/description/
+Q229
+import java.util.Arrays;
+class Solution {
+    public List<Integer> majorityElement(int[] nums) {
+        List<Integer> result = new ArrayList<>();
+        if (nums.length == 0) return result;
+          if (nums.length == 0) return result;
+        Arrays.sort(nums);
+        int n = nums.length;
+        int count = 1;
+        for (int i = 0; i < n - 1; i++) {
+            if (nums[i] == nums[i + 1]) {
+                count++;
+            } else {
+                if (count >n/3) {
+                    result.add(nums[i]);
+                }
+                count = 1;
+            }
+        }
+        
+        if (count > n / 3) {
+            result.add(nums[n - 1]);
+        }
+        
+        return result;
+    }
+}
+
+https://leetcode.com/problems/find-peak-element/description/
+Q162
+class Solution {
+    public int findPeakElement(int[] nums) {
+        if(isAsc(nums))
+            return nums.length-1;
+        if(isDesc(nums))
+            return 0;
+        int max = 0;      
+        for(int i = 1; i<nums.length-1;i++)
+        {
+            if(nums[i]>nums[i-1]&&nums[i]>nums[i+1])
+                max = i;
+        }
+        return max;
+    }
+    boolean isAsc(int[] nums){
+        for(int i = 0; i<nums.length-1;i++){
+            if(nums[i]>nums[i+1])
+                return false;
+        }
+        return true;
+    }
+    boolean isDesc(int[] nums){
+        for(int i = 0; i<nums.length-1;i++){
+            if(nums[i]<nums[i+1])
+                return false;
+        }
+        return true;
+    }
+}
+
+https://leetcode.com/problems/sort-colors/description/
+Q75 
+class Solution {
+    public void sortColors(int[] nums) {
+        int a=0,b=0,c=0;
+        for(int i = 0; i<nums.length;i++)
+        {
+            if(nums[i]==0)
+                a++;
+            else if(nums[i]==1)
+                b++;
+            else
+                c++;
+        }
+        for(int i = 0; i<nums.length;i++)
+        {
+            if(a>0)
+            {
+                nums[i] = 0;
+                a--;
+            }
+            else
+            {
+                if(b>0)
+                {
+                    nums[i] = 1;
+                    b--;
+                }
+                else 
+                {
+                    if(c>0)
+                    {    
+                        nums[i] = 2;
+                        c--;
+                    }
+                }
+            }
+        }
+    }
+}
+https://leetcode.com/problems/rearrange-array-elements-by-sign/
+Q2149	
+class Solution {
+    public int[] rearrangeArray(int[] nums) {
+        int[] n1 = new int[nums.length/2];
+        int[] n2 = new int[nums.length/2];
+        int n1idx=0, n2idx=0;
+        for(int i = 0; i<nums.length;i++)
+        {
+            if(nums[i]>=0)
+            {
+                n1[n1idx++] = nums[i];
+            }
+            else
+            {
+                n2[n2idx++] = nums[i];
+            }
+        }
+        for (int i = 0; i < nums.length / 2; i++) 
+        {
+            nums[2 * i] = n1[i];     
+            nums[2 * i + 1] = n2[i];  
+        }
+        return nums;
+    }
+}
+
+https://leetcode.com/problems/search-a-2d-matrix-ii/submissions/2030839613/
+Q240
+class Solution {
+    public boolean searchMatrix(int[][] matrix, int target) {
+        for(int i = 0; i<matrix.length;i++)
+        {   if(matrix[i][0]<=target)
+            {
+               for(int j = 0; j<matrix[0].length;j++)
+                {
+                    if(matrix[i][j] == target)
+                        return true;
+                }
+            }
+        }
+        return false;
+    }
+}
+https://leetcode.com/problems/find-a-peak-element-ii/description/
+Q1901
+class Solution {
+    public int[] findPeakGrid(int[][] mat) {
+        for(int i = 0; i<mat.length;i++)
+        {
+            for(int j = 0; j<mat[0].length;j++)
+            {
+                boolean isPeak = true;
+                if (i > 0 && mat[i][j] <= mat[i-1][j]) isPeak = false;
+                if (i < mat.length-1 && mat[i][j] <= mat[i+1][j]) isPeak = false;
+                if (j > 0 && mat[i][j] <= mat[i][j-1]) isPeak = false;
+                if (j < mat[0].length-1 && mat[i][j] <= mat[i][j+1]) isPeak = false;
+                
+                if (isPeak) {
+                    return new int[]{i, j};
+                }
+            }
+        }
+        return new int[]{-1, -1}; 
+    }
+}
+
+https://leetcode.com/problems/powx-n/description/
+Q50
+import java.lang.Math;
+class Solution {
+    public double myPow(double x, int n) {
+        long N = n;
+        if(N < 0) {
+            x = 1 / x;
+            N = -N;
+        }
+        double ans = 1;
+        while(N > 0) {
+            if(N % 2 == 1) {
+                ans = ans * x;
+            }
+            x = x * x;
+            N = N / 2;
+        }
+        return ans;
+    }
+}
+
+https://leetcode.com/problems/rotate-string/
+Q796
+class Solution {
+    public boolean rotateString(String s, String goal) {
+        if (s.length() != goal.length()) return false;
+        if (s.equals(goal)) return true;
+        
+        char[] chars = s.toCharArray();
+        char[] charg = goal.toCharArray();
+        int n = chars.length;
+        
+        // Check if goal is s rotated LEFT by 'shift'
+        for (int shift = 1; shift < n; shift++) {
+            boolean isMatch = true;
+            for (int j = 0; j < n; j++) {
+                // goal[j] should equal s[(j + shift) % n]
+                if (charg[j] != chars[(j + shift) % n]) {
+                    isMatch = false;
+                    break;
+                }
+            }
+            if (isMatch) return true;
+        }
+        return false;
+    }
+}
+https://leetcode.com/problems/delete-node-in-a-linked-list/description/
+Q237
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public void deleteNode(ListNode node) {
+        node.val = node.next.val;
+        node.next = node.next.next;   
+    }
+}
+https://leetcode.com/problems/reverse-linked-list/
+Q206
+class Solution {
+    public ListNode reverseList(ListNode head) {
+        if(head == null)
+            return head;
+        int c=0;  
+        int arr[] = new int[5000];
+        ListNode temp = head;
+        while(temp!=null)
+        {
+            arr[c] = temp.val;
+            c++;
+            temp = temp.next;
+        }
+        temp = head;
+        for(int i = c; i>0;i--)
+        {
+            temp.val = arr[i-1];
+            temp = temp.next;
+        }
+        return head;
+    }
+}
+https://leetcode.com/problems/delete-the-middle-node-of-a-linked-list/description/
+Q2095
+class Solution {
+    public ListNode deleteMiddle(ListNode head) {
+        if (head == null || head.next == null) return null;
+        int c=0;
+        ListNode temp = head;
+        while(temp!=null)
+        {
+            c++;
+            temp = temp.next;
+        }
+        int mid = c/2;
+        temp = head;
+        for(int i = 1; i<mid;i++)
+        {   
+            temp = temp.next;
+        }
+        temp.next = temp.next.next;
+        return head;
+    }
+}
+https://leetcode.com/problems/middle-of-the-linked-list/description/
+Q876
+class Solution {
+    public ListNode middleNode(ListNode head) {
+        int c=0;
+        ListNode temp = head;
+        while(temp!=null)
+        {
+            c++;
+            temp = temp.next;
+        }
+        int mid = 0;
+        if(c%2==1)
+            mid = c/2+1;
+        else
+            mid = c/2 +1;
+        
+        temp = head;
+        for(int i = 1; i<mid;i++)
+        {
+            temp = temp.next;
+        } 
+        return temp;
+    }
+}
+
+https://leetcode.com/problems/remove-nth-node-from-end-of-list/description/
+Q19
+class Solution {
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+        if(head.next == null) return null;
+        int c=0;
+        ListNode temp = head;
+        while(temp!=null)
+        {
+            c++;
+            temp = temp.next;
+        }
+        temp = head;
+        int pos = c - n;  
+        if (pos == 0) {
+            return head.next;
+        }
+        temp = head;
+        for (int i = 1; i < pos; i++) {
+            temp = temp.next;
+        }
+        temp.next = temp.next.next;
+        return head;
+    }
+}
+https://leetcode.com/problems/remove-linked-list-elements/description/
+Q203
+class Solution {
+    public ListNode removeElements(ListNode head, int val) {
+        int c = val;
+        if(head == null)
+            return null;
+        while (head != null && head.val == val) {
+            head = head.next;
+        }
+        if (head == null) return null;
+        ListNode temp = head;
+        while(temp!=null && temp.next!=null)
+        {
+            if(temp.next.val == c)
+            {
+                temp.next = temp.next.next;
+            }
+            else{
+                temp= temp.next;
+            }
+        }
+        return head;
+    }
+}
+
+https://leetcode.com/problems/merge-two-sorted-lists/description/
+Q21
+class Solution {
+    public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
+        if(list1 == null && list2 == null)
+            return null;
+        if(list1 == null && list2 != null)
+            return list2;
+        if(list1 != null && list2 == null)
+            return list1;  
+        ListNode temp1 = list1;
+        ListNode temp2 = list2;
+        ListNode newtemp = new ListNode(0);
+        ListNode temp3 = newtemp;
+        //ListNode newnode = new ListNode();
+        while(temp1!=null && temp2!= null)
+        {
+            if(temp1.val <= temp2.val)
+            {
+                temp3.next = new ListNode(temp1.val);
+                /*newnode.val = temp1.val;
+                newnode.next = null;
+                if(temp3 == null)
+                {   
+                    temp3 = newnode;
+                }   
+                else{
+                    temp3.next = newnode ;
+                    temp3 = temp3.next;
+                }*/
+                temp1 = temp1.next;
+            }
+            else if(temp1.val>temp2.val)
+            {
+                temp3.next = new ListNode(temp2.val);
+/*                newnode.val = temp2.val;
+                newnode.next = null;
+                if(temp3 == null)
+                {
+                    temp3 = newnode;
+                }   
+                else{
+                    temp3.next = newnode;
+                    temp3 = temp3.next;
+                }*/
+                temp2 = temp2.next;
+            }
+            temp3 = temp3.next;
+        }
+        if(temp1 == null && temp2 != null)
+        {
+            while(temp2!=null)
+            {
+                temp3.next = new ListNode(temp2.val);
+               /* newnode.val = temp2.val;
+                newnode.next = null;
+                temp3.next = newnode;*/
+                temp3 = temp3.next;
+                temp2 = temp2.next;
+            }
+        }  
+        if(temp1 != null && temp2 == null)
+        {
+            while(temp1!=null)
+            {
+                temp3.next = new ListNode(temp1.val);
+                /*newnode.val = temp1.val;
+                newnode.next = null;
+                temp3.next = newnode;*/
+                temp3 = temp3.next;
+                temp1 = temp1.next;
+            }
+
+        }
+        return newtemp.next;
+    }
+
+https://leetcode.com/problems/check-if-n-and-its-double-exist/description/}
+Q1346
+class Solution {
+    public boolean checkIfExist(int[] arr) {
+        for(int i = 0; i<arr.length; i++)
+        {
+            for(int j = 1+i; j<arr.length;j++)
+            {
+                if(arr[i] == 2*arr[j]||arr[j] == 2 * arr[i])
+                    return true;
+            }
+        }
+        return false;
+    }
+}
+https://leetcode.com/problems/add-two-numbers/description/
+Q2
+class Solution {
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        ListNode temp1 = l1;
+        ListNode temp2 = l2;
+        ListNode ans = new ListNode(0);
+        ListNode temp3 = ans;
+        int c = 0;
+        while(temp1!=null && temp2!=null)
+        {
+            int x = (temp1.val+temp2.val+c);
+            if(x/10!= 0)
+            {   
+                c = x/10;
+                x = x%10;
+            }
+            else {
+                c = 0;
+            }
+            {
+                temp3.next = new ListNode(x);
+                temp3 = temp3.next;
+            }
+            temp1 = temp1.next; temp2 = temp2.next;
+        }
+        if(temp1!= null && temp2 == null)
+        {
+            while(temp1!=null)
+            { int x = (temp1.val+c);
+            if(x/10!= 0)
+            {   
+                c = x/10;
+                x = x%10;
+            } 
+            else{
+                c = 0;
+            }
+            temp3.next = new ListNode(x);
+            temp3 = temp3.next;
+            temp1 = temp1.next;
+            }
+        }
+        if(temp2!= null && temp1 == null)
+        {
+           while(temp2!=null)
+           { int x = (temp2.val+c);
+            if(x/10!= 0)
+            {   
+                c = x/10;
+                x = x%10;
+            }
+            else{
+                c = 0;
+            }
+            temp3.next = new ListNode(x);
+            temp3 = temp3.next;
+            temp2 = temp2.next;
+           }
+        }
+        if(temp1==null && temp2 == null && c != 0)
+        {
+            temp3.next = new ListNode(c);
+            temp3 = temp3.next;
+        }
+        return ans.next;
+
+    }
+}
+
+https://leetcode.com/problems/merge-sorted-array/description/
+Q88
+class Solution {
+    public void merge(int[] nums1, int m, int[] nums2, int n) {
+        int i = 0, j=0,k=0;
+        int x = m+n;
+        int nums3[] = new int[x];
+         while (i < m && j < n) {
+            if (nums1[i] <= nums2[j]) {
+                nums3[k++] = nums1[i++];
+            } else {
+                nums3[k++] = nums2[j++];
+            }
+        }
+         while (i < m) {
+            nums3[k++] = nums1[i++];
+        }
+        while(j<n){
+            nums3[k++] = nums2[j++];
+        }
+        for( i = 0; i<m+n;i++)
+        {
+            nums1[i] = nums3[i];
+        }
+    }
+}
+
+https://leetcode.com/problems/validate-binary-search-tree/description/
+Q98
+class Solution {
+    private Integer prev = null;
+    public boolean isValidBST(TreeNode root) {
+        return inorder(root);
+    }
+    private boolean inorder(TreeNode node) {
+        if (node == null) return true;
+        if (!inorder(node.left)) return false;
+        if (prev != null && node.val <= prev) {
+            return false;
+        }
+        prev = node.val;
+        return inorder(node.right);
+    }
+}
